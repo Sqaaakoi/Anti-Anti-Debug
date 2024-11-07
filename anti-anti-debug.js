@@ -140,7 +140,7 @@
     window.Function.prototype.constructor = wrapFn((...args) => {
         const originalFn = Originals.functionConstructor.apply(this, args);
         var fnContent = args[0];
-        if (fnContent) {
+        if (fnContent && fnContent.length < 16) {
             if (fnContent.includes('debugger')) { // An anti-debugger is attempting to stop debugging
                 if (shouldLog("debugger")) {
                     Originals.warn("Prevented debugger");
